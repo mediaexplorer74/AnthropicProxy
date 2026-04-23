@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\SOFTWARE\Policies\Claude]
+"inferenceProvider"="gateway"
+"inferenceGatewayBaseUrl"="http://127.0.0.1:3000"
+"inferenceGatewayApiKey"="local-dev-token"
+"inferenceGatewayAuthScheme"="bearer"
+"isClaudeCodeForDesktopEnabled"=dword:00000001
+
