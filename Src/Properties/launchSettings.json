@@ -15,8 +15,7 @@
       "launchBrowser": false,
       "applicationUrl": "http://127.0.0.1:3000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "OPENROUTER_API_KEY": "PUT_YOUR_OPENROUTER_KEY_HERE"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "https": {
@@ -25,8 +24,7 @@
       "launchBrowser": false,
       "applicationUrl": "http://127.0.0.1:3000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "OPENROUTER_API_KEY": "PUT_YOUR_OPENROUTER_KEY_HERE"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "IIS Express": {

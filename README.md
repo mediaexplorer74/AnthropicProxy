@@ -1,4 +1,4 @@
-# AnthropicProxy 1.0.2
+# AnthropicProxy 1.0.3
 ![](Images/AnthropicProxy.jpg)
 
 Небольшой локальный прокси на C# / ASP.NET Core, который позволяет запустить `Claude Desktop` в `gateway`-режиме и перенаправить запросы в OpenRouter.  Данная штука позволит прикоснуться к довольно хайповой штуковине Cloude и "потрогать" её неочевидные фичи Cowork и Code вообще без затрат. Важность отсутствия "фирменной" авторизации заметно тогда, когда аккаунт забанен Антропиком или на вашем тарифном плане исчерпаны все лимиты для продолжения взаимодействия с Cloude. По сути, "супермашина" Cloude Desktop с помощью этой прокси может какое-то дополнительное время (примерно 200 запросов в день)оработать с альтернативным "движком" Openrouter и его прикольными free-моделями (не так уж и уступающими хвалёным фирменным моделькам Opus или Sonnet из "фирменного набора" Anthropic). 
@@ -8,13 +8,13 @@
 ![](Images/CloudeCoworkProject.jpg)  
 ![](Images/CloudeCodeModelMapping.jpg)
 ![](Images/ClaudeCodeDesktop.jpg)
-![](Images/CodingLimitsError.jpg)
+![](Images/CloudeCode.jpg)
 
 ## Что нового / Ключевые изменения
-Фолбэк-цепочка моделей — при 429 от одной модели сразу пробуется следующая из списка, без ожидания. Все 4 модели имеют независимые квоты по 200 req/day = суммарно ~800 запросов.
-Локальный кэш — повторные идентичные запросы (например Claude Desktop переспрашивает то же самое) отдаются из памяти за 0 мс, не тратя квоту. TTL настраивается в appsettings.json.
-Заголовок X-Used-Model — в ответе видно, какая модель реально ответила.
-Подавление шума в логах — System.Net.Http переведён на Warning, чтобы не спамили LogicalHandler/ClientHandler строчки.
+Ключ читается в первую очередь из Proxy:OpenRouterApiKey в appsettings.json — пользователь просто вписывает его туда. Environment-переменная всё ещё работает как fallback (ASP.NET Core автоматически даёт ей приоритет если она задана, что удобно для продакшена).
+record CachedResponse и вспомогательные функции перенесены в конец файла — после app.Run(), как и требует C# для top-level statements.
+Модели meta-llama и google/gemma-3-27b-it:free убраны из дефолтного списка фолбэков, заменены на openai/gpt-oss-20b:free и openai/gpt-oss-120b:free — они поддерживают Anthropic-формат через OpenRouter и имеют 131K контекст.
+При получении 400 или 404 модель автоматически добавляется в incompatibleModels прямо в рантайме — то есть если OpenRouter вдруг сменит поведение какой-то модели, прокси сам это обнаружит и больше не будет её трогать в рамках текущей сессии.
 
 
 ## Особенности этой наскоро собранной мини-софтинки
@@ -74,20 +74,18 @@ dotnet run --launch-profile http
 http://127.0.0.1:3000
 ```
 
-### Вариант 2. Через готовый exe
+### Вариант 2. Через готовый exe (скачайте архив AnthropicProxy.zip в разделе Releases, затем распакуйте его, например, в C:\Apps\)
 
-1. Сначала соберите проект:
-
-```powershell
-dotnet build
+1. В папке AnthropicProxy найдите файл appsettings.json, а в нем строку 
+```text
+"OpenRouterApiKey": "PUT_YOUR_OPENROUTER_KEY_HERE"
 ```
 
-2. Затем запустите:
+Вместо "PUT_YOUR_OPENROUTER_KEY_HERE впишите свой api-ключ от сервиса OpenRouter.
 
-```powershell
-$env:OPENROUTER_API_KEY="ВАШ_OPENROUTER_API_KEY"
-.\bin\Debug\net8.0\AnthropicProxy.exe
-```
+
+2. Запустите powershell AnthropicProxy.exe
+
 
 ## Быстрая проверка, что прокси жив
 
