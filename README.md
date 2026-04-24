@@ -183,11 +183,8 @@ Now listening on: http://127.0.0.1:3000
 - `Opus`
 - `OpenRouter Free`
 
-Но реально все эти варианты сейчас маппятся в один и тот же upstream:
+Но реально все эти варианты сейчас маппятся в один и тот же upstream Openrouter.
 
-```text
-openrouter/free
-```
 
 ## Ограничения и известные нюансы
 
@@ -197,9 +194,7 @@ openrouter/free
 ## Безопасность
 
 Если форкнули мой репозиторий и модифицировали его, то не публикуйте свой реальный OpenRouter API key в GitHub. Просто перед коммитом проверьте
- `Properties/launchSettings.json`.
-
-В шаблоне этого проекта ключ в `launchSettings.json` уже заменён на безопасную заглушку.
+ `appsettings.json`. 
 
 ## Лицензия и статус 
 
