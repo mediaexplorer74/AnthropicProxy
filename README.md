@@ -5,10 +5,10 @@
 
 ## Скриншоты
 ![](Images/ClaudeGatemodeAuth.jpg)
-![](Images/CloudeCoworkProject.jpg)  
-![](Images/CloudeCodeModelMapping.jpg)
+![](Images/ClaudeCoworkProject.jpg)  
+![](Images/ClaudeCodeModelMapping.jpg)
 ![](Images/ClaudeCodeDesktop.jpg)
-![](Images/CloudeCode.jpg)
+![](Images/ClaudeCode.jpg)
 
 ## Что нового / Ключевые изменения
 Ключ читается в первую очередь из Proxy:OpenRouterApiKey в appsettings.json — пользователь просто вписывает его туда. Environment-переменная всё ещё работает как fallback (ASP.NET Core автоматически даёт ей приоритет если она задана, что удобно для продакшена).
@@ -206,3 +206,5 @@ Now listening on: http://127.0.0.1:3000
 
 ## ..
 Исследователь медиа, 2026
+
+![](Images/footer.jpg)
