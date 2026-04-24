@@ -82,7 +82,7 @@ http://127.0.0.1:3000
 "OpenRouterApiKey": "PUT_YOUR_OPENROUTER_KEY_HERE"
 ```
 
-Вместо "PUT_YOUR_OPENROUTER_KEY_HERE впишите свой api-ключ от сервиса OpenRouter.
+Вместо PUT_YOUR_OPENROUTER_KEY_HERE впишите свой api-ключ от сервиса OpenRouter.
 
 
 2. Запустите powershell AnthropicProxy.exe
